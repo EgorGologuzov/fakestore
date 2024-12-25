@@ -6,10 +6,11 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { CartContextProvider } from './hooks/useCart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <CartContextProvider>
     <App />
-  </React.StrictMode>
+  </CartContextProvider>
 );
