@@ -11,8 +11,8 @@ export default function Footer() {
       justifyContent="space-between"
       alignItems="center">
       <Stack direction="column">
-        <Typography variant="h6" component="div">FakeStore</Typography>
-        <Typography variant="subtitle2" component="div" color="textDisabled">
+        <Typography variant="h6" component="div" sx={{ color: "text.primary" }}>FakeStore</Typography>
+        <Typography variant="subtitle2" component="div" sx={{ color: "text.disabled" }}>
           © 2024-2025 FakeStore. Все права защищены.
         </Typography>
       </Stack>

@@ -2,6 +2,7 @@ import { AppBar, Box, Chip, Container, Dialog, DialogContent, IconButton, Slide,
 import React from 'react'
 import ToCartButton from './ToCartButton'
 import { Close } from '@mui/icons-material'
+import GoodsRating from './GoodsRating';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -42,16 +43,18 @@ export default function GoodsDialog({ good, onClose, ...otherProps }) {
             {good.onSale && <Chip color="secondary" label="По скидке" />}
           </Stack>
 
-          <Typography variant={"h6"} component="div">
-            {good.title}
+          <Typography gutterBottom variant="h6" component="div" color="primary" sx={{ m: 0 }}>
+            {"$" + good.price.toLocaleString()}
           </Typography>
+          
+          <GoodsRating value={good.discount} />
 
-          <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Stack direction="column" spacing={1}>
+            <Typography variant={"h6"} component="div">
+              {good.title}
+            </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               {"#" + good.category}
-            </Typography>
-            <Typography gutterBottom variant="h6" component="div" color="primary">
-              {"$" + good.price.toLocaleString()}
             </Typography>
           </Stack>
 

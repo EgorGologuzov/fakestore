@@ -1,0 +1,1 @@
+GET https://fakestoreapi.in/api/products?limit=10000

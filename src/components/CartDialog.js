@@ -31,7 +31,7 @@ export default function CartDialog({ onClose, ...otherProps }) {
         sum += price * quantity;
       }
     }
-    
+
     return sum;
   }
 
@@ -57,23 +57,25 @@ export default function CartDialog({ onClose, ...otherProps }) {
           {ids.length === 0 && <Alert severity="info">Корзина пуста</Alert>}
 
           {ids.length !== 0 &&
-            <Stack direction="column" spacing={1}>
-              {ids.map((id) =>
-                <GoodInCart goodId={id} key={id} onPriceLoad={({ price }) => handlePriceLoad({ id, price })} />
-              )}
-            </Stack>
+            <>
+              <Stack direction="column" spacing={1}>
+                {ids.map((id) =>
+                  <GoodInCart goodId={id} key={id} onPriceLoad={({ price }) => handlePriceLoad({ id, price })} />
+                )}
+              </Stack>
+              
+              <Stack direction="row" justifyContent="space-between">
+                <Typography variant="h6" component="div">
+                  Всего:
+                </Typography>
+                <Typography variant="h6" component="div" color="primary">
+                  {"$" + sum.toLocaleString()}
+                </Typography>
+              </Stack>
+
+              <Button variant="contained">Перейти к оформлению</Button>
+            </>
           }
-
-          <Stack direction="row" justifyContent="space-between">
-            <Typography variant="h6" component="div">
-              Всего:
-            </Typography>
-            <Typography variant="h6" component="div" color="primary">
-              {"$" + sum.toLocaleString()}
-            </Typography>
-          </Stack>
-
-          <Button variant="contained">Перейти к оформлению</Button>
 
         </Stack>
       </DialogContent>

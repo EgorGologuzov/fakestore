@@ -7,10 +7,13 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { CartContextProvider } from './hooks/useCart';
+import { ThemeContextProvider } from './hooks/useTheme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <CartContextProvider>
-    <App />
-  </CartContextProvider>
+  <ThemeContextProvider>
+    <CartContextProvider>
+      <App />
+    </CartContextProvider>
+  </ThemeContextProvider>
 );

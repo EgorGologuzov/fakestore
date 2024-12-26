@@ -1,7 +1,7 @@
 import productsResponse from "./json/products.json"
 
 
-const NEED_TRY_LOAD = true;
+const NEED_TRY_LOAD = false;
 const products = productsResponse.products;
 const cash = {}
 
@@ -12,13 +12,15 @@ export function sleep(ms = 500) {
 
 
 export async function get({ url, getDefault, handleResult }) {
-  if (!NEED_TRY_LOAD)  {
-    await sleep();
-    return getDefault();
-  }
-
   if (cash[url]) {
     return cash[url];
+  }
+
+  if (!NEED_TRY_LOAD)  {
+    await sleep();
+    const result = getDefault();
+    cash[url] = result;
+    return result;
   }
 
   try {
@@ -26,10 +28,8 @@ export async function get({ url, getDefault, handleResult }) {
     const json = await response.json();
     const result = handleResult(json);
     cash[url] = result;
-    console.log(result);
     return result;
   } catch (err) {
-    console.log(err);
     return getDefault();
   }
 }
@@ -61,9 +61,7 @@ export function getProducts({ page, limit, category }) {
 
 
 export function getProductById({ id }) {
-  const url = `https://fakestoreapi.in/api/products/${id}?arg=fake`;
-
-  console.log(url);
+  const url = `https://fakestoreapi.in/api/products/${id}`;
 
   return get({
     url,

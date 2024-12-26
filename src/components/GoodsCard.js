@@ -13,12 +13,6 @@ const ClampedTypography = styled(Typography)(({ theme }) => ({
   margin: 0,
 }));
 
-const discountToRating = (discount) => {
-  discount ??= 17;
-  discount %= 20;
-  return discount / 4;
-}
-
 export default function GoodsCard({ data }) {
   const [isOpenInfo, setIsOpenInfo] = useState(false);
 
@@ -26,21 +20,19 @@ export default function GoodsCard({ data }) {
   const hide = () => setIsOpenInfo(false);
 
   return (
-    <Card sx={{ minHeight: "500px", maxHeight: "500px", display: "flex", flexDirection: "column"}} >
-      <Box sx={{ position: "relative", height: "300px" }} onClick={show}>
+    <Card sx={{ minHeight: "532px", maxHeight: "532px", display: "flex", flexDirection: "column" }} >
+      <Box sx={{ position: "relative", height: "300px", cursor: "pointer" }} onClick={show}>
         <CardMedia component="img" height="300" alt={data.title} image={data.image}
           sx={{ position: "absolute", objectFit: "cover", filter: "blur(10px)", overflow: "hidden" }} />
         <CardMedia component="img" height="300" alt={data.title} image={data.image}
           sx={{ position: "absolute", objectFit: "contain" }} />
       </Box>
 
-      <CardContent onClick={show}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" flexWrap="wrap">
-          <GoodsRating value={discountToRating(data.discount)} />
-          <Typography gutterBottom variant="h6" component="div" sx={{margin: 0}} color="primary">
-            {"$" + data.price.toLocaleString()}
-          </Typography>
-        </Stack>
+      <CardContent onClick={show} sx={{ cursor: "pointer" }}>
+        <Typography gutterBottom variant="h6" component="div" color="primary" sx={{ m: 0 }}>
+          {"$" + data.price.toLocaleString()}
+        </Typography>
+        <GoodsRating value={data.discount} />
         <ClampedTypography gutterBottom variant="h6" component="div">
           {data.title}
         </ClampedTypography>
@@ -49,7 +41,7 @@ export default function GoodsCard({ data }) {
         </Typography>
       </CardContent>
 
-      <CardActions sx={{mt: "auto", width: "100%"}}>
+      <CardActions sx={{ mt: "auto", width: "100%" }}>
         <ToCartButton goodId={data.id} />
       </CardActions>
 

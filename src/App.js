@@ -1,4 +1,4 @@
-import { Alert, Button, CircularProgress, Container, Stack } from "@mui/material";
+import { Alert, Box, Button, CircularProgress, Container, Stack } from "@mui/material";
 import GoodsList from "./components/GoodsList";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
@@ -40,10 +40,15 @@ export default function App() {
   }, [category]);
 
   return (
-    <>
+    <Box sx={{
+      backgroundColor: 'background.paper',
+      mt: { xs: "56px", sm: "64px" },
+      minHeight: { xs: "calc(100vh - 56px)", sm: "calc(100vh - 64px)" }
+    }}>
+      
       <Header />
 
-      <Container sx={{mt: "5rem", mb: "1rem"}}>
+      <Container sx={{pt: "1rem", pb: "1rem"}}>
         <Stack direction="column" spacing={3} alignItems="center">
 
           <CategorySelect onChange={handleCategoryChange} />
@@ -60,6 +65,7 @@ export default function App() {
 
         </Stack>
       </Container>
-    </>
+
+    </Box>
   );
 }

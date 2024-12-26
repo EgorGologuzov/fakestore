@@ -1,7 +1,7 @@
 import { Box, Chip } from '@mui/material';
 import React, { useState } from 'react'
 
-const categories = ["Все", "tv", "audio", "laptop", "mobile", "gaming", "appliances"];
+const categories = ["Все", "tv", "audio", "laptop", "mobile", "gaming", "appliances", "empty"];
 
 export default function CategorySelect({ onChange }) {
   const [selectedCategory, setSelectedCategory] = useState("Все");
